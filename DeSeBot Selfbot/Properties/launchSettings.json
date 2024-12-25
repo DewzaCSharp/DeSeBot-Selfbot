@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeSeBot Selfbot": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

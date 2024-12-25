@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DeSeBot</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>DeSeBot Selfbot</Title>
+    <Version>1.0.0</Version>
+    <Authors>DewzaCSharp</Authors>
+    <Company>DewzaCSharp</Company>
+    <Product>DeSeBotSelfbot</Product>
+    <Description>a feature-rich Discord Selfbot</Description>
+    <Copyright>Copyright © 2025 DewzaCSharp All rights reserved.</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <AssemblyName>DeSeBotSelfbot</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ApplicationIcon>DeSeBot.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)||$(Platform)'=='Debug||AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)||$(Platform)'=='Release||AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="DeSeBot.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Discord.Net.WebSocket" Version="3.16.0" />
+    <PackageReference Include="DSharpPlus" Version="3.2.3" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="3.2.3" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="3.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="runtime.any.System.Collections" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Diagnostics.Tools" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Diagnostics.Tracing" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Globalization" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Globalization.Calendars" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.IO" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Reflection" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Reflection.Extensions" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Reflection.Primitives" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Resources.ResourceManager" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Runtime" Version="4.3.1" />
+    <PackageReference Include="runtime.any.System.Runtime.Handles" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Runtime.InteropServices" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Text.Encoding.Extensions" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="runtime.any.System.Threading.Timer" Version="4.3.0" />
+    <PackageReference Include="runtime.unix.Microsoft.Win32.Primitives" Version="4.3.0" />
+    <PackageReference Include="runtime.unix.System.Diagnostics.Debug" Version="4.3.0" />
+    <PackageReference Include="runtime.unix.System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="runtime.unix.System.Net.Primitives" Version="4.3.1" />
+    <PackageReference Include="runtime.unix.System.Net.Sockets" Version="4.3.0" />
+    <PackageReference Include="runtime.unix.System.Private.Uri" Version="4.3.2" />
+    <PackageReference Include="runtime.unix.System.Runtime.Extensions" Version="4.3.1" />
+    <PackageReference Include="runtime.win.Microsoft.Win32.Primitives" Version="4.3.0" />
+    <PackageReference Include="runtime.win.System.Diagnostics.Debug" Version="4.3.0" />
+    <PackageReference Include="runtime.win.System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="runtime.win.System.Net.Primitives" Version="4.3.1" />
+    <PackageReference Include="runtime.win.System.Net.Sockets" Version="4.3.0" />
+    <PackageReference Include="runtime.win.System.Runtime.Extensions" Version="4.3.1" />
+  </ItemGroup>
+
+</Project>
