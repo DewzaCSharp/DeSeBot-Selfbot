@@ -14,3 +14,7 @@ Usage:
  2. Set your Custom Bot Prefix in config.json (Optional, Default: '.')
  3. Start DeSeBotSelfbot.exe
  4. Enjoy!
+
+
+https://github.com/user-attachments/assets/11451216-3ceb-4d78-94cf-eb50e9a999d1
+
