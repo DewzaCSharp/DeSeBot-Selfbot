@@ -27,7 +27,7 @@ public class Status
                 newStatus = DSharpPlus.Entities.UserStatus.Invisible;
                 break;
             default:
-                await ctx.RespondAsync("Invalid status! try `online`, `dnd`, `idle`, or `invisible`.");
+                await ctx.RespondAsync("Invalid status! available: `online`, `dnd`, `idle`, or `invisible`.");
                 return;
         }
 
