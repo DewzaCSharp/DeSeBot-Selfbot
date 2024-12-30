@@ -233,9 +233,9 @@ public class MyCommands
         await ctx.RespondAsync($"Pong! Latency: {latency}ms");
     }
 
-    [Command("Shutdown")]
+    [Command("shutdown")]
     [Description("Shutdowns the Bot | Usage: Shutdown [password here]")]
-    public async Task Exit(CommandContext ctx, int password)
+    public async Task Shutdown(CommandContext ctx, int password)
     {
         Console.WriteLine("[i] Exit Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
