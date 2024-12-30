@@ -264,7 +264,7 @@ public class MyCommands
         Console.WriteLine("[i] Killyourself command was executed.");
         await ctx.TriggerTypingAsync();
         await ctx.RespondAsync($"Who tf do you think you are talking to huh {ctx.Message.Author.Mention}");
-        await ctx.RespondAsync("yeah, thats what i thought ||bitch||");
+        await ctx.RespondAsync("yeah, thats what i thought ||bit**||");
         await ctx.RespondAsync("hahaha");
     }
 
