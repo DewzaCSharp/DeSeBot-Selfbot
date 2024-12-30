@@ -233,9 +233,9 @@ public class MyCommands
         await ctx.RespondAsync($"Pong! Latency: {latency}ms");
     }
 
-    [Command("Shutdown")]
+    [Command("shutdown")]
     [Description("Shutdowns the Bot | Usage: Shutdown [password here]")]
-    public async Task Exit(CommandContext ctx, int password)
+    public async Task Shutdown(CommandContext ctx, int password)
     {
         Console.WriteLine("[i] Exit Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
@@ -264,7 +264,7 @@ public class MyCommands
         Console.WriteLine("[i] Killyourself command was executed.");
         await ctx.TriggerTypingAsync();
         await ctx.RespondAsync($"Who tf do you think you are talking to huh {ctx.Message.Author.Mention}");
-        await ctx.RespondAsync("yeah, thats what i thought bitch");
+        await ctx.RespondAsync("yeah, thats what i thought ||bitch||");
         await ctx.RespondAsync("hahaha");
     }
 

@@ -70,7 +70,7 @@ namespace SimpleDiscordBot
 
             discord.Ready += async e =>
             {
-                Game game = new Game(".commands | DeSeBot Selfbot", ActivityType.Watching, details: ".commands");
+                Game game = new Game(botConfig.RPCText, ActivityType.Watching);
                 DiscordGame dsharpgame = new DiscordGame(game.Name);
                 await discord.UpdateStatusAsync(dsharpgame, user_status: DSharpPlus.Entities.UserStatus.Idle, idle_since: null);
             };
@@ -111,6 +111,8 @@ namespace SimpleDiscordBot
             Thread.Sleep(100);
             await animate($"\t\t\t\t   [i] logged in as: '{discord.CurrentUser.Username}'", 7);
             Thread.Sleep(100);
+            await animate($"\t\t\t\t   [i] RPC Text: '{botConfig.RPCText}'", 7);
+            Thread.Sleep(100);
             await animate("\t\t\t\t   [i] Bot Online!", 7);
             Thread.Sleep(100);
             Console.WriteLine("\t\t\t\t[ ------------------------- ]");
@@ -135,5 +137,6 @@ namespace SimpleDiscordBot
     {
         public string Token { get; set; }
         public string Prefix { get; set; }
+        public string RPCText { get; set; }
     }
 }

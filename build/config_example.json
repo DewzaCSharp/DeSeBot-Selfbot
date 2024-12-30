@@ -1,4 +1,5 @@
 {
   "Token": "TOKEN",
-  "Prefix": "."
+  "Prefix": ".",
+  "RPCText": ".commands | DeSeBot Selfbot"
 }
