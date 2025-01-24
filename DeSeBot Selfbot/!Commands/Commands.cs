@@ -30,12 +30,26 @@ public class Misc
 public class MyCommands
 {
     public static bool ownercheck = false;
+    private static readonly List<string> AllowedUsers = new List<string>
+    {
+        "dewzacsharp",
+        "j4y404"
+    };
+    private bool IsUserAllowed(CommandContext ctx)
+    {
+        return AllowedUsers.Contains(ctx.User.Username);
+    }
 
     [Command("information")]
     [Description("Gives you information about me.")]
     public async Task Information(CommandContext ctx)
     {
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         Console.WriteLine("[i] Information Command was Executed!");
         await ctx.Message.Channel.SendMessageAsync("> # Info\n" +
             "> **Version: **`1.0.0`\n" +
@@ -47,6 +61,11 @@ public class MyCommands
     public async Task SayCommand(CommandContext ctx, [RemainingText] string message = null)
     {
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         if (string.IsNullOrWhiteSpace(message))
         {
             await ctx.RespondAsync("Please Enter the message that i should say\nExample: .echo hi");
@@ -79,6 +98,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] Clear Command was Executed!");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         await ClearMsg.Clear(ctx, limit);
     }
 
@@ -87,6 +111,11 @@ public class MyCommands
     public async Task ListAvailableCommandsAsync(CommandContext ctx)
     {
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         Console.WriteLine("[i] ListCommands Command was Executed!");
 
         var commandsList = ctx.CommandsNext.RegisteredCommands;
@@ -111,6 +140,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] newinvite Command was Executed!");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         if (max_age <= 0 || max_uses <= 0)
         {
             await ctx.RespondAsync("please enter maximum age / uses.\nUsage: newinvite [max age (days)] [max uses]");
@@ -128,6 +162,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] setstatus Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         await Status.ChangeStatus(ctx, status);
     }
 
@@ -137,6 +176,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] avatar Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         var avatarUrl = ctx.Client.CurrentUser.AvatarUrl;
         await ctx.RespondAsync($"{ctx.Client.CurrentUser.Username}'s Avatar\n[Avatar]({avatarUrl})");
     }
@@ -147,6 +191,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] serverinfo Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         var server = ctx.Guild;
         await ctx.RespondAsync($"# {server.Name} Information\n**Server Name:** {server.Name}\n**Owner:** {server.Owner.Username}\n**Member Count:** {server.MemberCount}");
     }
@@ -157,6 +206,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] React Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         if (messageId == 0 || string.IsNullOrWhiteSpace(emojiName))
         {
             await ctx.RespondAsync("please enter an messageId and emoji name\nUsage: react [messageid] [emojiname]");
@@ -179,6 +233,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] myinfo Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         var user = ctx.Client.CurrentUser;
         await ctx.RespondAsync($"# {user.Username}'s Information\n**Username:** {user.Username}\n**ID:** {user.Id}\n**Created At:** {user.CreationTimestamp}\n**Status:** {user.Presence?.Status.ToString() ?? "Offline"}");
     }
@@ -189,6 +248,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] leave Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         var guild = ctx.Guild;
         if (guild != null)
         {
@@ -229,6 +293,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] ping Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         var latency = ctx.Client.Ping;
         await ctx.RespondAsync($"Pong! Latency: {latency}ms");
     }
@@ -239,6 +308,11 @@ public class MyCommands
     {
         Console.WriteLine("[i] Exit Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         if (password <= 0)
         {
             await ctx.RespondAsync("please enter the **Correct** password.\nUsage: exit [password here]");
@@ -257,21 +331,26 @@ public class MyCommands
             await ctx.RespondAsync("Sorry, but the entered password is incorrect!");
         }
     }
-    [Command("killyourself")]
-    [Description("Makes the Bot sad :(")]
-    public async Task killyourself(CommandContext ctx)
-    {
-        Console.WriteLine("[i] Killyourself command was executed.");
-        await ctx.TriggerTypingAsync();
-        await ctx.RespondAsync($"Who tf do you think you are talking to huh {ctx.Message.Author.Mention}");
-        await ctx.RespondAsync("yeah, thats what i thought ||bit**||");
-        await ctx.RespondAsync("hahaha");
-    }
+    //[Command("killyourself")]
+    //[Description("Makes the Bot sad :(")]
+    //public async Task killyourself(CommandContext ctx)
+    //{
+    //    Console.WriteLine("[i] Killyourself command was executed.");
+    //    await ctx.TriggerTypingAsync();
+    //    await ctx.RespondAsync($"Who tf do you think you are talking to huh {ctx.Message.Author.Mention}");
+    //    await ctx.RespondAsync("yeah, thats what i thought ||bit**||");
+    //    await ctx.RespondAsync("hahaha");
+    //}
 
     [Command("spam")]
     [Description("spams a custom message | Usage: spam [count] [message]")]
     public async Task SpamCommand(CommandContext ctx, int count, [RemainingText] string message)
     {
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         if (count <= 0 || string.IsNullOrWhiteSpace(message))
         {
             await ctx.RespondAsync("please enter an message count and a message\nUsage: spam [count] [message]");
@@ -296,13 +375,41 @@ public class MyCommands
         await ctx.RespondAsync($"Successfully Toggled Ownercheck: {ownercheck}");
     }
 
-
     [Command("clone")]
     [Description("Clones the current server into a new one | Usage .clone [newserverid]")]
     public async Task CloneServer(CommandContext ctx, [RemainingText] ulong targetServerId)
     {
         Console.WriteLine("[i] Clone Command was Executed");
         await ctx.Channel.TriggerTypingAsync();
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
         await ServerClone.CloneServer(ctx, targetServerId);
+    }
+    [Command("afk")]
+    [Description("toggles your afk status")]
+    public async Task afk(CommandContext ctx)
+    {
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
+        Program.isAFK = !Program.isAFK;
+        await ctx.RespondAsync(Program.isAFK ? "I am now AFK" : "I am no longer AFK");
+    }
+    [Command("RPC")]
+    [Description("toggles your RPC")]
+    public async Task ToggleRPC(CommandContext ctx)
+    {
+        if (!IsUserAllowed(ctx))
+        {
+            await ctx.RespondAsync("You are not authorized to use this command.");
+            return;
+        }
+        Program.RPC = !Program.RPC;
+        await ctx.RespondAsync(Program.RPC ? "RPC Toggled on!" : "RPC Toggled off!");
     }
 }

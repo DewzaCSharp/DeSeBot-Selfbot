@@ -35,6 +35,9 @@ namespace SimpleDiscordBot
         private const int GWL_EXSTYLE = -20;
         private const uint WS_EX_LAYERED = 0x80000;
         private const uint LWA_ALPHA = 0x2;
+
+        public static bool isAFK = false;
+        public static bool RPC = false;
         public static async Task RealMain()
         {
             string text2 = "Connecting...";
@@ -68,11 +71,22 @@ namespace SimpleDiscordBot
                 StringPrefix = botConfig.Prefix
             });
 
-            discord.Ready += async e =>
+            if (RPC)
             {
-                Game game = new Game(botConfig.RPCText, ActivityType.Watching);
-                DiscordGame dsharpgame = new DiscordGame(game.Name);
-                await discord.UpdateStatusAsync(dsharpgame, user_status: DSharpPlus.Entities.UserStatus.Idle, idle_since: null);
+                discord.Ready += async e =>
+                {
+                    Game game = new Game(botConfig.RPCText, ActivityType.Watching);
+                    DiscordGame dsharpgame = new DiscordGame(game.Name);
+                    await discord.UpdateStatusAsync(dsharpgame, user_status: DSharpPlus.Entities.UserStatus.Idle, idle_since: null);
+                };
+            }
+            MyCommands cmds = new MyCommands();
+            discord.MessageCreated += async e =>
+            {
+                if (isAFK && e.Message.Author.Id != discord.CurrentUser.Id)
+                {
+                    await e.Message.RespondAsync("I'm currently AFK!\nI'll try my best to respond as soon as possible.");
+                }
             };
             commands.RegisterCommands<MyCommands>();
             await discord.ConnectAsync();
